@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, callback)=>{
         const {originalname} = file;
-        callback(null, originalname);
+        callback(null, `${uuid}_${originalname}`);
     }
 })
 const upload = multer({storage})
@@ -16,8 +16,9 @@ const upload = multer({storage})
 const app = express();
 app.use(express.static('public'));
 
-app.post('/upload',upload.single('file'), (req, res)=>{
-    return res.json({status: 'OK'})
+app.post('/upload',upload.array('file'), (req, res)=>{
+    console.log(req.body.product_name)
+    return res.json({status: 'OK', uploaded: req.files.length})
 })
 
 
