@@ -10,7 +10,7 @@
 
 <body>
   <h1>Upload your product</h1>
-
+  
   <form action="/upload" method="post" enctype="multipart/form-data">
     <label for="catagory_of_product">Select product catagory</label>
     <select name="product_catagory" id="">
@@ -19,28 +19,29 @@
       <option value="Bottomwear">Bottom Wear</option>
       <option value="Shoes">Shoes</option>
     </select>
-
+    
     <label for="ideal_for"> Ideal for : </label>
     <select name="gender" id="selectGender">
       <option value="male">Male</option>
       <option value="female">Female</option>
       <option value="kids">Kids</option>
     </select>
-
+    
     <select name="selectTopwearMen" id="selectTopwearMen" hidden>
       <option value="shirt">Shirt</option>
       <option value="tShirt">T Shirt</option>
       <option value="hoodies">Hoodies</option>
     </select>
-
+    
     <select name="selectBottomwearWomen" id="selectBottomwearWomen" hidden>
       <option value="shorts">Shorts</option>
       <option value="jeans">Jeans</option>
       <option value="Pant">Pants</option>
     </select>
-
+    
     <label for="product_name">Enter Product Name</label>
     <input type="text" name="product_name" />
+    
     <label for="productSize">Product Size</label>
     <select name="productSize" id="productSize" multiple>
       <option value="S">S</option>
@@ -50,20 +51,27 @@
       <option value="XL">XL</option>
       <option value="XXL">XXL</option>
     </select>
+
     <label for="productColor">Product color</label>
     <input type="text" name="productColor" id="productColor">
+
     <label for="productDescription">Product Description</label>
     <textarea name="productDescription" rows="4" cols="50"></textarea>
+
     <label for="mrp">Enter Maximum Retail Price</label>
     <input type="text" name="mrp" id="mrp">
+
     <label for="price">Price</label>
     <input type="text" name="price" id="price">
+
     <label for="numOfStocks">Number Of Stoks Available</label>
     <input type="number" name="numOfStocks" id="numOfStocks">
+
     <label for=""></label>
+
     <label for="file">Select Image files</label>
     <input type="file" name="file"accept="image/png, image/jpeg, image/jpg"  />
-    <button>Upload</button>
+    <button name="submitForm">Upload</button>
   </form>
 </body>
 
