@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
     product_id: String,
+    product_name: {type: String, required: true},
     product_description: String,
-    product_image_path: String,
+    product_images_path: [String],
     product_available_for: [String],
     product_wear_catagory: String,
     product_brand: String,
@@ -16,7 +17,8 @@ const ProductSchema = new Schema({
             price: Number,
             stocks: Number
         }],
-        product_color: [String],
+        product_sizes: [String],
+        product_colors: [String],
         product_number_of_stocks: Number
     }
 },{
