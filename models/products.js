@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
     product_id: String,
     product_name: {type: String, required: true},
+    visible: {type: Boolean, default: true},
     product_description: String,
     product_images_path: [String],
     product_available_for: [String],

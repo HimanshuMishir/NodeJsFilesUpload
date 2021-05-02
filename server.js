@@ -16,7 +16,10 @@ const connection = mongoose.connection;
 connection.on("err", console.log);
 
 const app = express();
+app.use(express.static('uploads'));
 app.use(express.static("public"));
+
+// *** To upload data and files to the server...........
 
 app.post("/upload", (req, res) => {
   const storage = multer.diskStorage({
@@ -32,8 +35,8 @@ app.post("/upload", (req, res) => {
   });
   const upload = multer({ storage }).array("file", 10);
   upload(req, res, (err) => {
-      const item = req.body;
-      var paths = [];
+    const item = req.body;
+    var paths = [];
     const patharray = [
       req.files.forEach((element, index, array) => {
         paths.push(element.path);
@@ -46,17 +49,17 @@ app.post("/upload", (req, res) => {
       product_images_path: paths,
       product_available_for: [item.gender],
       product_wear_catagory: item.product_catagory,
-      product_specific:{
-          product_id: Math.random()*1000,
-          product: [{
-              color: item.product_color,
-              stocks: item.numOfStocks,
-              price: item.price,
-              size: item.productSize[0],
-          }],
+      product_specific: {
+        product: [
+          {
+            color: item.color,
+            stocks: item.numOfStocks,
+            price: item.price,
+            size: item.productSize[0],
+          },
+        ],
         product_sizes: item.productSize,
-
-      }
+      },
     };
     const response = product_catalog.create(product);
     //
@@ -66,5 +69,13 @@ app.post("/upload", (req, res) => {
     res.json({ status: "OK", uploaded: req.files.length });
   });
 });
+
+// *** API to get the data from the server.............
+
+app.get('/api/getproductinfo', async (req, res)=>{
+    const products = await product_catalog.find({});
+
+    res.json(products);
+})
 
 app.listen(3001, () => console.log(`The server is running on port: 3001`));

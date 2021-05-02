@@ -1,78 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello admin Manage your products and orders from here</title>
 </head>
-
 <body>
-  <h1>Upload your product</h1>
   
-  <form action="/upload" method="post" enctype="multipart/form-data">
-    <label for="catagory_of_product">Select product catagory</label>
-    <select name="product_catagory" id="">
-      <option value="select">Select catagory of Product</option>
-      <option value="Topwear">Topwear</option>
-      <option value="Bottomwear">Bottom Wear</option>
-      <option value="Shoes">Shoes</option>
-    </select>
-    
-    <label for="ideal_for"> Ideal for : </label>
-    <select name="gender" id="selectGender">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="kids">Kids</option>
-    </select>
-    
-    <select name="selectTopwearMen" id="selectTopwearMen" hidden>
-      <option value="shirt">Shirt</option>
-      <option value="tShirt">T Shirt</option>
-      <option value="hoodies">Hoodies</option>
-    </select>
-    
-    <select name="selectBottomwearWomen" id="selectBottomwearWomen" hidden>
-      <option value="shorts">Shorts</option>
-      <option value="jeans">Jeans</option>
-      <option value="Pant">Pants</option>
-    </select>
-    
-    <label for="product_name">Enter Product Name</label>
-    <input type="text" name="product_name" />
-    
-    <label for="productSize">Product Size</label>
-    <select name="productSize" id="productSize" multiple>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="S">S</option>
-      <option value="XL">XL</option>
-      <option value="XXL">XXL</option>
-    </select>
+<a href="./upload_product.html">Click here to upload your products</a>
 
-    <label for="productColor">Product color</label>
-    <input type="text" name="productColor" id="productColor">
-
-    <label for="productDescription">Product Description</label>
-    <textarea name="productDescription" rows="4" cols="50"></textarea>
-
-    <label for="mrp">Enter Maximum Retail Price</label>
-    <input type="text" name="mrp" id="mrp">
-
-    <label for="price">Price</label>
-    <input type="text" name="price" id="price">
-
-    <label for="numOfStocks">Number Of Stoks Available</label>
-    <input type="number" name="numOfStocks" id="numOfStocks">
-
-    <label for=""></label>
-
-    <label for="file">Select Image files</label>
-    <input type="file" name="file"accept="image/png, image/jpeg, image/jpg" multiple />
-    <button name="submitForm">Upload</button>
-  </form>
+<script src="./javascript/index.js"></script>
+<script>
+  window.onload = loadProducts;
+</script>
 </body>
-
 </html>
