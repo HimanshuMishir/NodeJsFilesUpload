@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello admin Manage your products and orders from here</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
-  
-<a href="./upload_product.html">Click here to upload your products</a>
 
-<script src="./javascript/index.js"></script>
-<script>
-  window.onload = loadProducts;
-</script>
+<body>
+
+  <a href="./upload_product.html">Click here to upload your products</a>
+
+  <table>
+    <tr>
+      <td>Image</td>
+      <td>Product Name</td>
+      <td>Product Brand</td>
+      <td>For</td>
+      <td>Live</td>
+      <td>Sizes</td>
+      <td>Colors</td>
+      <td>Number Of Stocks</td>
+      <td>Price</td>
+    </tr>
+  </table>
+
+  <script src="./javascript/index.js"></script>
+  <script>
+    window.onload = loadProducts;
+  </script>
 </body>
+
 </html>
