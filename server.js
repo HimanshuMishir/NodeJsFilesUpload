@@ -16,15 +16,15 @@ const connection = mongoose.connection;
 connection.on("err", console.log);
 
 const app = express();
-app.use(express.static('uploads'));
 app.use(express.static("public"));
+app.use(express.static("uploads"));
 
 // *** To upload data and files to the server...........
 
 app.post("/upload", (req, res) => {
   const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-      callback(null, "uploads");
+      callback(null, "uploads/images");
     },
     filename: (req, file, callback) => {
       const ext = path.extname(file.originalname);
@@ -37,14 +37,16 @@ app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
     const item = req.body;
     var paths = [];
-    const patharray = [
-      req.files.forEach((element, index, array) => {
-        paths.push(element.path);
-      }),
-    ];
+    
+      req.files.forEach((element) => {
+        paths.push(element.filename);
+        console.log(element);
+      })
+   
     console.log(item);
     const product = {
       product_name: item.product_name,
+      product_brand: item.product_brand,
       product_description: item.productDescription,
       product_images_path: paths,
       product_available_for: [item.gender],

@@ -1,0 +1,28 @@
+table{
+    border: 1px solid #dc143c;
+    padding: 8px;
+    background-color: #ffe9e9;
+    margin-top: 10px;
+}
+td{
+    border: 1px  solid #dc143c;
+    margin: 0px;
+    padding: 3px;
+}
+.heading{
+    margin: auto;
+    text-align: center;
+}
+.link_btn{
+    display: flex;
+    
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+}
+.container{
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
