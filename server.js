@@ -80,4 +80,4 @@ app.get('/api/getproductinfo', async (req, res)=>{
     res.json(products);
 })
 
-app.listen(process.env.PORT, () => console.log(`The server is running on port: 3001`));
+app.listen(process.env.PORT, () => console.log(`The server is running on port: ${process.env.PORT}`));
