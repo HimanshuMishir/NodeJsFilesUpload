@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const uuid = require("uuid").v4;
 const path = require("path");
+const cors = require('cors');
 require("dotenv").config();
 const mongoose = require("mongoose");
 const product_catalog = require("./models/products");
@@ -16,6 +17,7 @@ const connection = mongoose.connection;
 connection.on("err", console.log);
 
 const app = express();
+app.use(cors({ origin: 'http://localhost:3000'}));
 app.use(express.static("public"));
 app.use(express.static("uploads"));
 
