@@ -33,15 +33,48 @@ const loadProducts = async () => {
     // adding price
 
     const price = document.createElement('td');
-    price.innerHTML = `₹ ${element.product_specific.product[0].price}`
+    const price_of_product = element.product_specific.product[0].price;
+    console.log(price_of_product)
+    price.innerHTML = `₹ ${price_of_product}`;
     productsTr.appendChild(price);
+
+    //adding color
+
+    const product_color = document.createElement('td');
+    product_color.innerHTML = `${element.product_specific.product[0].color}`
+    productsTr.appendChild(product_color)
+
+    //adding sizes
+
+    const product_size = document.createElement('td');
+    const sizesString = element.product_specific.product_sizes.toString();
+    product_size.innerHTML = sizesString;
+    productsTr.appendChild(product_size);
+
     // adding gender ......
 
     const td_gender = document.createElement("td");
     td_gender.innerHTML = element.product_available_for[0];
-
-
     productsTr.appendChild(td_gender);
+
+    //adding number of stocks
+
+    const num_of_stocks = document.createElement('td');
+    num_of_stocks.innerHTML = element.product_specific.product[0].stocks;
+    productsTr.appendChild(num_of_stocks);
+
+    //adding edit button for each
+
+    const buttonTd = document.createElement('td')
+    const editbutton = document.createElement('button');
+    const inputButtonForProductId = document.createElement('input');
+    inputButtonForProductId.type = 'hidden';
+    inputButtonForProductId.value = element._id;
+    editbutton.innerHTML = 'edit';
+    editbutton.className = 'editButton';
+    buttonTd.appendChild(editbutton);
+    buttonTd.appendChild(inputButtonForProductId);
+    productsTr.appendChild(buttonTd);
 
     table.appendChild(productsTr);
    
