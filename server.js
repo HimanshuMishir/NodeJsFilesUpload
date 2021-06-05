@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const uuid = require("uuid").v4;
 const path = require("path");
-const cors = require('cors');
+const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const product_catalog = require("./models/products");
@@ -17,8 +17,8 @@ const connection = mongoose.connection;
 connection.on("err", console.log);
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000'}));
-app.use(cors({origin: 'https://partyshopping.herokuapp.com'}))
+app.use(cors({ origin: "http://localhost:3000" }));
+//app.use(cors({ origin: "https://partyshopping.herokuapp.com" }));
 app.use(express.static("public"));
 app.use(express.static("uploads"));
 
@@ -40,13 +40,12 @@ app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
     const item = req.body;
     var paths = [];
-    
-      req.files.forEach((element) => {
-        paths.push(element.filename);
-        console.log(element);
-      })
-   
-    console.log(item);
+
+    req.files.forEach((element) => {
+      paths.push(element.filename);
+      console.log(element);
+    });
+
     const product = {
       product_name: item.product_name,
       product_brand: item.product_brand,
@@ -68,19 +67,50 @@ app.post("/upload", (req, res) => {
     };
     const response = product_catalog.create(product);
     //
-    if (err) {
+    if (!err) {
+      res.redirect("/");
+    } else {
+      console.log(response);
       console.log(err);
     }
-    res.json({ status: "OK", uploaded: req.files.length });
   });
 });
 
 // *** API to get the data from the server.............
 
-app.get('/api/getproductinfo', async (req, res)=>{
-    const products = await product_catalog.find({});
+app.get("/api/getproductinfo", async (req, res) => {
+  const products = await product_catalog.find({});
+  console.log('api called')
+  res.json(products);
+});
 
-    res.json(products);
-})
+// ***  API to update data in the database ............
 
-app.listen(process.env.PORT, () => console.log(`The server is running on port: ${process.env.PORT}`));
+app.post("/api/updateproductinfo", async (req, res) => {
+  const item = req.body;
+
+  const newproductinfo = {
+    product_name: item.product_name,
+    product_brand: item.product_brand,
+    product_description: item.productDescription,
+    product_images_path: paths,
+    product_available_for: [item.gender],
+    product_wear_catagory: item.product_catagory,
+    product_specific: {
+      product: [
+        {
+          color: item.color,
+          stocks: item.numOfStocks,
+          price: item.price,
+          size: item.productSize[0],
+        },
+      ],
+      product_sizes: item.productSize,
+    },
+  };
+  const products = await product_catalog.findByIdAndUpdate()
+});
+
+app.listen(process.env.PORT, () =>
+  console.log(`The server is running on port: ${process.env.PORT}`)
+);
