@@ -18,7 +18,7 @@ connection.on("err", console.log);
 
 const app = express();
 //app.use(cors({ origin: "http://localhost:3000" }));
-app.use(cors({ origin: "https://partyshopping.herokuapp.com" }));
+app.use(cors({ origin: "https://partyshopping.onrender.com" }));
 app.use(express.static("public"));
 app.use(express.static("uploads"));
 
